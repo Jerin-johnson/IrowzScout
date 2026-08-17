@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IrowzScout
 
-## Getting Started
+> Your AI agent for discovering the right job opportunities.
 
-First, run the development server:
+IrowzScout analyzes your resume, understands your career profile, searches connected job sources, ranks opportunities by relevance, and continuously discovers new jobs.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Resume intelligence
+- AI-powered candidate profiling
+- Personalized job discovery
+- AI job matching
+- Match explanations
+- Job deduplication
+- Scheduled job discovery
+- Recruiter/contact information when available
+- Future resume tailoring and application assistance
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js
+- TypeScript
+- MongoDB
+- Gemini
+- Tailwind CSS
+- Vercel
 
-## Learn More
+## Documentation
 
-To learn more about Next.js, take a look at the following resources:
+- [Product Overview](./docs/product-overview.md)
+- [Architecture](./docs/architecture.md)
+- [Data Model](./docs/model.md)
+- [AI Matching](./docs/ai-matching.md)
+- [Job Ingestion](./docs/job-ingestion.md)
+- [Security](./docs/security.md)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Development Phases
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Phase 1 — Foundation](./docs/phases/phase-01-foundation.md)
+- [Phase 2 — Resume Intelligence](./docs/phases/phase-02-resume-intelligence.md)
+- [Phase 3 — Job Discovery](./docs/phases/phase-03-job-discovery.md)
+- [Phase 4 — AI Matching](./docs/phases/phase-04-ai-matching.md)
+- [Phase 5 — Automated Discovery](./docs/phases/phase-05-automated-discovery.md)
+- [Phase 6 — MVP Polish](./docs/phases/phase-06-mvp-polish.md)

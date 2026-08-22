@@ -3,11 +3,10 @@ import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { verifyPassword } from "@/lib/auth/password";
 import { userRepository } from "@/infrastructure/repositories/user.repository";
+import { authConfig } from "./auth.config";
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  session: { strategy: "jwt" },
-  pages: {
-    signIn: "/sign-in",
-  },
+  ...authConfig,
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -43,6 +42,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
+    // ...authConfig.callbacks,
     async signIn({ user, account }) {
       if (account?.provider === "google") {
         const dbUser = await userRepository.findOrCreateGoogleUser({

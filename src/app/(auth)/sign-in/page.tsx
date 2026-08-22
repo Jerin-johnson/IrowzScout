@@ -1,0 +1,98 @@
+"use client";
+
+import { useActionState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { loginUser } from "@/actions/auth.actions";
+import { GoogleAuthButton } from "@/components/auth/google-auth-button";
+
+function SignInForm() {
+  const [state, formAction, isPending] = useActionState(loginUser, null);
+  const searchParams = useSearchParams();
+  const justRegistered = searchParams.get("registered") === "true";
+
+  return (
+    <div className="space-y-6">
+      {justRegistered && (
+        <div className="rounded-lg bg-emerald-950/30 p-3 text-sm text-emerald-400 text-center border border-emerald-900/50">
+          Account created successfully. Please sign in.
+        </div>
+      )}
+
+      <GoogleAuthButton mode="signin" />
+
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-zinc-800" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase tracking-wider">
+          <span className="bg-[#09090b] px-4 text-zinc-500">or</span>
+        </div>
+      </div>
+
+      <form action={formAction} className="space-y-4">
+        {state?.error && (
+          <div className="rounded-lg bg-red-950/50 p-3 text-sm text-red-400 text-center border border-red-900/50">
+            {state.error}
+          </div>
+        )}
+
+        <input
+          name="email"
+          type="email"
+          placeholder="Email address"
+          required
+          className="block w-full rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:border-zinc-700 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-colors"
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          required
+          className="block w-full rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 focus:border-zinc-700 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-colors"
+        />
+
+        <button
+          type="submit"
+          disabled={isPending}
+          className="w-full rounded-xl bg-zinc-100 px-4 py-3 text-sm font-medium text-zinc-900 transition-all hover:bg-zinc-200 disabled:opacity-50 mt-4"
+        >
+          {isPending ? "Signing in..." : "Sign In"}
+        </button>
+      </form>
+
+      <p className="text-center text-sm text-zinc-500 pt-4">
+        Don&apos;t have an account?{" "}
+        <Link
+          href="/sign-up"
+          className="font-medium text-zinc-300 hover:text-zinc-100 transition-colors"
+        >
+          Sign up
+        </Link>
+      </p>
+    </div>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <div className="mx-auto w-full max-w-sm">
+      <div className="text-center pb-8">
+        <h2 className="text-2xl font-medium tracking-tight text-zinc-100">
+          Welcome back
+        </h2>
+        <p className="mt-2 text-sm text-zinc-400">
+          Pick up exactly where you left off.
+        </p>
+      </div>
+
+      <Suspense
+        fallback={
+          <div className="h-64 animate-pulse rounded-xl bg-zinc-900/50" />
+        }
+      >
+        <SignInForm />
+      </Suspense>
+    </div>
+  );
+}

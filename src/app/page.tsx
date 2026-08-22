@@ -78,7 +78,7 @@ export default function LandingPage() {
             How it works
           </Link>
           <Link
-            href="/login"
+            href="/sign-in"
             className="rounded-full bg-white/10 px-5 py-2 text-sm font-medium text-white backdrop-blur transition hover:bg-white/15"
           >
             Sign in
@@ -244,7 +244,7 @@ export default function LandingPage() {
           </p>
 
           <Link
-            href="/login"
+            href="/sign-up"
             className="mt-10 inline-flex items-center gap-2.5 rounded-full bg-white px-9 py-3.5 text-sm font-medium text-black transition hover:bg-zinc-100"
           >
             Start discovering

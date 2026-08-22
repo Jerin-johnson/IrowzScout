@@ -5,7 +5,9 @@ export interface IUser extends Document {
   name: string;
   passwordHash?: string;
   avatarUrl?: string;
+  provider: "credentials" | "google";
   isActive: boolean;
+  resumeCompleted: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -20,25 +22,31 @@ const userSchema = new Schema<IUser>(
       trim: true,
       index: true,
     },
-
     name: {
       type: String,
       required: true,
       trim: true,
     },
-
     passwordHash: {
       type: String,
       select: false,
     },
-
     avatarUrl: {
       type: String,
     },
-
+    provider: {
+      type: String,
+      enum: ["credentials", "google"],
+      default: "credentials",
+    },
     isActive: {
       type: Boolean,
       default: true,
+      index: true,
+    },
+    resumeCompleted: {
+      type: Boolean,
+      default: false,
       index: true,
     },
   },
